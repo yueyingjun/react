@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script><!--react核心代码-->
+    <script src="node_modules/react-dom/dist/react-dom.js"></script><!--react核心代码-->
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Todo extends React.Component{
+        constructor(){
+            super();
+            this.state={text:"",arr:[],value:"提交"}
+        }
+        change(e){
+            var val = e.target.value;
+            console.log(val);
+            this.state.text=val;
+        }
+        click(){
+            var text = this.state.text;
+            this.state.arr.push(text);
+            var num = this.state.arr.length;
+            this.setState({text:"",arr:this.state.arr,value:"提交"+num})
+        }
+        render(){
+            return (<div>
+                <Title title="未完成项"/>
+                <List arr={this.state.arr}/>
+                <input type="text" onChange={this.change.bind(this)}/>
+                <input type="submit" value={this.state.value} onClick={this.click.bind(this)}/>
+            </div>)
+        }
+    }
+    class Title extends React.Component{
+        render(){
+            return <h1>{this.props.title}</h1>
+        }
+    }
+    class List extends  React.Component{
+        render(){
+            return (<ul>
+                {this.props.arr.map((a,b)=>{
+                    return (<li>{a}</li>)
+                })}
+            </ul>)
+        }
+    }
+    ReactDOM.render(<Todo/>,document.getElementById("root"));
+</script>
+</body>
+</html>
