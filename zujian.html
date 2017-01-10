@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Parent extends React.Component{
+        constructor(){
+            super();
+         }
+        render(){
+            return (
+                   <ul>
+                       <Son></Son>
+                    </ul>
+              )
+        }
+    }
+    class Son extends React.Component{
+        constructor(){
+            super();
+            this.state={name:"张三"};
+        }
+        render(){
+            return (
+                    <li>
+                    1111
+                    </li>
+               )
+        }
+    }
+    ReactDOM.render(<Parent/>,document.getElementById("root"));
+</script>
+</body>
+</html>
+
+
