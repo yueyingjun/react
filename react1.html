@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
+</head>
+<!--jsx-->
+<body>
+   <div id="root" >
+
+   </div>
+   <script src="node_modules/babel-standalone/babel.js"></script>
+
+   <!--
+      1.  渲染的组件，只能有一个根元素
+
+
+      1. jsx          使用简单
+
+      2. 单项数据流    绑定数据简单
+
+      3. 虚拟dom        加快程序运行效率
+
+      4. 组件化开发
+
+
+
+5.  props
+
+6.  state={}
+    setState()
+   -->
+
+   <script type="text/babel">
+
+
+       var arr=[
+           {title:"标题1",con:"内容"},
+           {title:"标题2",con:"内容"},
+           {title:"标题3",con:"内容"},
+           {title:"标题4",con:"内容"},
+           {title:"标题5",con:"内容"}
+           ];
+       class Abc extends React.Component{
+           constructor(){
+               super();
+               this.state={name:"zhangsan"};
+
+           }
+           change(){
+            this.setState({name:"lisi"})
+
+               //1.  重新设置 state的值
+               //2.  重新进行渲染
+           }
+           render(){
+               console.log(this.name);
+               return (
+                     <div onClick={this.change.bind(this)}>{this.state.name}</div>
+
+               )
+           }
+       }
+
+       ReactDOM.render(<Abc/>,document.getElementById("root"))
+   </script>
+</body>
+</html>
