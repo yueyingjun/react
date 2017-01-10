@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "babel-standalone": "^6.21.1",
+    "babel": "^6.5.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "remarkable": "^1.7.1"
   },
   "devDependencies": {},
   "scripts": {

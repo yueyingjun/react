@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>外部插件</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+    <script src="node_modules/remarkable/dist/remarkable.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class MarkdownEditor extends React.Component{
+        constructor(){
+            super();
+            this.state={value:"写入markdown语法的文本"};
+        }
+        change(){
+            this.setState({value:this.refs.textarea.value})
+        }
+        getMarkdown(){
+            var md = new Remarkable();
+            return { __html: md.render(this.state.value) };
+        }
+        render(){
+            return (
+                <div className="MarkdownEditor">
+                    <h3>markdown编辑</h3>
+                    <textarea ref="textarea" onChange={this.change.bind(this)} defaultValue={this.state.value}/>
+
+                    <h3>文本输出</h3>
+                    <div className="content" dangerouslySetInnerHTML={this.getMarkdown()}></div>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<MarkdownEditor/>,document.getElementById("root"));
+</script>
+</body>
+</html>
