@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+    class Title extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return <h1>{this.props.title}</h1>
+        }
+    }
+    class List extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return (
+                    <ul>
+                    {
+                        this.props.listData.map((a,b)=>{
+                        return <li key={b}>{a.con}</li>
+                    })
+        }
+        </ul>
+        )
+        }
+    }
+
+    class Todo extends React.Component{
+        constructor(){
+            super();
+            this.state={text:"",arr:[]}
+        }
+        change(e){
+            var val = e.target.value;
+            this.state.text=val;
+        }
+        click(){
+            var obj = {
+                con:this.state.text
+            }
+            this.setState(function(prev){
+                return {
+                    arr:prev.arr.concat(obj)
+                }
+            })
+        }
+        render(){
+            return (
+                    <div>
+                    <Title title="待办事项"/>
+                    <List listData={this.state.arr}/>
+        <input type="text" onChange={this.change.bind(this)}/>
+        <input type="button" value="添加" onClick={this.click.bind(this)}/>
+        </div>
+        )
+        }
+    }
+    ReactDOM.render(<Todo/>,document.getElementById("root"))
+</script>
+</html>
