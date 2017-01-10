@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script><!--react核心代码-->
+    <script src="node_modules/react-dom/dist/react-dom.js"></script><!--react核心代码-->
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Hello extends React.Component{
+        render(){
+            return <div>岳老师很英俊</div>
+        }
+    }
+    ReactDOM.render(<Hello/>,document.getElementById("root"));
+</script>
+</body>
+</html>

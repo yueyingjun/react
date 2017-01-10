@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script><!--react核心代码-->
+    <script src="node_modules/react-dom/dist/react-dom.js"></script><!--react核心代码-->
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Time extends React.Component{
+        constructor(){
+            super();
+            this.state={num:0}
+        }
+        render(){
+            return <div>计时器：{this.state.num}</div>
+        }
+        componentDidMount(){
+            var num = this.state.num;
+            var t = setInterval(()=>{
+                num++;
+                this.setState({num:num})
+            },1000)
+        }
+    }
+    ReactDOM.render(<Time/>,document.getElementById("root"));
+</script>
+</body>
+</html>
