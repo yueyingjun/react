@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!--<script src="node_modules/"></script>-->
+<script type="text/babel">
+    /*
+    class Hello extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return (<div>{(this.props.children).map(function(a,b){
+                return <li key={b}>{a}</li>
+            })}</div>)
+//            return <div>{this.props.con}</div>
+        }
+    }
+    ReactDOM.render(<Hello><span>span</span><span>em</span><span>i</span></Hello>,document.getElementById("root"));
+//    ReactDOM.render(<hello con="hello world"/>,document.getElementById("root"));
+
+*/
+
+/*
+    class Abc extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return (<div>{(this.props.children).map(function(a,b){
+                return <li key={b}>{a}</li>
+            })}</div>)
+//            return <div>{this.props.con}</div>
+        }
+    }
+    ReactDOM.render(<Abc data={arr}/>,document.getElementById("root"));
+ */
+
+
+//    生命周期
+    class Time extends React.Component{
+        constructor(){
+            super();
+            this.state={time:0}
+            console.log("构造函数");
+        }
+        componentWillMount(){
+            console.log("组件即将装备到页面中");
+        }
+        render(){
+            console.log("组件正在渲染到页面中")
+            return <div>{this.state.time}</div>
+        }
+        componentDidMount(){
+            console.log("div已经渲染到页面中");
+            var num=0;
+            setInterval(()=>{
+                console.log(num);
+                num++;
+                this.setState({time:num});
+            },1000)
+        }
+    }
+    ReactDOM.render(<Time/>,document.getElementById("root"));
+
+//    var arr=[1,2,3,4]
+//    arr.map(function (a,b,c) {/* a 每一个 | b下标 | c 操作数组*/
+//        console.log(a+"--"+b+"--"+c)
+//    })
+</script>
+
+</html>
