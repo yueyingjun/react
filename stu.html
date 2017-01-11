@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+</head>
+<!--jsx-->
+<body>
+
+
+<div id="root">
+</div>
+<script src="node_modules/babel-standalone/babel.js"></script>
+
+
+<script type="text/babel">
+
+    var stuInfo = [
+        {name: "张三", sex: "男", age: 20, id: 1},
+        {name: "张四", sex: "男", age: 21, id: 2},
+        {name: "张五", sex: "女", age: 22, id: 3},
+        {name: "张六", sex: "女", age: 20, id: 4},
+        {name: "张七", sex: "男", age: 19, id: 5}
+    ];
+
+
+    class Select extends React.Component {
+        constructor() {
+            super();
+        }
+
+        render() {
+            //this.props.changeSex
+            return (
+                    <select className="form-control" onChange={(e)=>{this.props.changeSex(e.target.value)}}>
+                        <option value="0">全部</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+            )
+        }
+    }
+
+
+    class Search extends React.Component {
+        constructor() {
+            super();
+        }
+
+        render() {
+            return (
+                    <div className="input-group" style={{marginTop: "10px"}}>
+                        <span className="input-group-addon">搜索</span>
+                        <input type="text" className="form-control" placeholder="Username"/>
+                    </div>
+            )
+        }
+    }
+
+    class Table extends React.Component {
+        constructor() {
+            super();
+        }
+
+        render() {
+            return (
+                    <table className="table table-bordered" style={{marginTop:"10px"}}>
+                        <tbody>
+
+                        {
+                            this.props.stuInfo.map(function(a,b){
+                               return <tr key={b}>
+                                    <td>{a.name}</td>
+                                    <td>{a.sex}</td>
+                                    <td>{a.age}</td>
+                                    <td>删除</td>
+                                </tr>
+
+                            })
+
+                        }
+                        </tbody>
+                    </table>
+            )
+        }
+    }
+
+
+
+    class Main extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state={stuInfo:this.props.stuInfo};
+            this.stuInfo=this.props.stuInfo;
+        }
+        changeSex(id){
+           var map={1:"男",2:"女"};
+            this.state={stuInfo:this.stuInfo};
+           if(id==0){
+              this.setState({stuInfo:this.stuInfo})
+           }else {
+               var arr=this.state.stuInfo.filter(function (a) {
+                   if (map[id] == a.sex) {
+                       return a;
+                   }
+               })
+               this.setState({stuInfo:arr})
+           }
+        }
+        render() {
+            return (
+                    <div>
+                        <h3>{this.props.title}</h3>
+                        <Select changeSex={this.changeSex.bind(this)}/>
+                        <Search/>
+                        <Table stuInfo={this.state.stuInfo}/>
+                    </div>
+
+            )
+        }
+    }
+/*
+* 单向数据流
+*
+* */
+    ReactDOM.render(<Main title="学生花名册" stuInfo={stuInfo}/>,document.querySelector("#root"))
+
+
+</script>
+</body>
+</html>
