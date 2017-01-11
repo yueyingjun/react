@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+<script type="text/babel">
+    class  Parent extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return(
+                <div>
+                    <Son1></Son1>
+                    <Son2></Son2>
+                </div>
+            )
+        }
+    }
+    class Son1 extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return(
+                    <span>111</span>
+            )
+        }
+    }
+    class Son2 extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return(
+                    <span>222</span>
+            )
+        }
+    }
+
+    ReactDOM.render(<Parent/>,root);
+</script>
