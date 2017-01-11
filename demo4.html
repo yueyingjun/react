@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+<script type="text/babel">
+    class Time extends React.Component{
+        constructor(){
+            super();
+            this.state=({time:0});
+        }
+        fn(){
+            this.setState({time:1});
+        }
+        componentWillUpdate(){
+            console.log("即将更新");
+        }
+        componentDidUpdate(){
+            console.log("更新完成");
+        }
+        render(){
+            return (
+                    <div onClick={this.fn.bind(this)}>{this.state.time}</div>
+            )
+        }
+    }
+    ReactDOM.render(<Time/>,root);
+</script>

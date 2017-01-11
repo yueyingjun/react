@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <title>Document</title>
+        <script src="node_modules/react/dist/react.js"></script>
+        <script src="node_modules/react-dom/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+<script type="text/babel">
+    var arr=[1,2,3,4,5];
+    arr.map(function(a,b,c){
+        console.log("a"+a);
+        console.log("b"+b);
+        console.log("c"+c);
+    });
+
+    class Hello extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return <ul>{(this.props.children).map(function(a,b,c){
+                return <li key={b}>{a}+"bb"</li>
+            })}</ul>
+        }
+    }
+    ReactDOM.render(<Hello><span>你好</span><em>我好</em><i>大家好</i></Hello>,document.getElementById("root"))
+</script>
