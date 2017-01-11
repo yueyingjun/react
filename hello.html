@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="babel.js"></script>
+</head>
+<body>
+<div></div>
+<!--1.我们在使用已经定义好的组件时候，可以传入属性
+    2、我们可以在组件的内容获取到传进来的值 this.props.属性名
+    3我们不能在组件内部更改，传进来的属性值
+    4、渲染的组件必须是一个根元素
+    5、props
+    6、
+    特点
+    1.jsx
+    2.单项数据流
+    3.虚拟dom  加快程序的运行效率
+    4.组件化开发
+    -->
+<div id="root"></div>
+<script type="text/babel">
+    class Hello extends React.Component{
+        constructor(){
+            super();
+            this.state={name:"张三"};
+        }change(){
+        this.setState({name:"李四"})
+    }
+        render(){
+            return (
+            <div onClick={this.change.bind(this)}>{this.state.name} </div>
+                 )
+          }
+    }
+    ReactDOM.render(<Hello/>,document.getElementById("root"));
+</script>
+</body>
+</html>
+
