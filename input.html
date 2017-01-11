@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
+</head>
+<!--jsx-->
+<body>
+
+<div id="root">
+
+</div>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="node_modules/remarkable/dist/remarkable.min.js"></script>
+<!--jsx  基类  父类 顶层类  -->
+<script type="text/babel">
+    class MarkdownEditor extends React.Component {
+        constructor(props) {
+            super(props);
+            this.handleChange = this.handleChange.bind(this);
+            this.state = {value: 'Type some *markdown* here!'};
+        }
+
+        handleChange() {
+            this.setState({value: this.refs.textarea.value});
+        }
+
+        getRawMarkup() {
+            var md = new Remarkable();
+            return { __html: md.render(this.state.value) };
+        }
+
+        render() {
+            return (
+                    <div className="MarkdownEditor">
+                    <h3>Input</h3>
+                    <textarea
+            onChange={this.handleChange}
+            ref="textarea"
+            defaultValue={this.state.value} />
+        <h3>Output</h3>
+            <div
+            className="content"
+            dangerouslySetInnerHTML={this.getRawMarkup()}
+        />
+        </div>
+        );
+        }
+    }
+
+    ReactDOM.render(<MarkdownEditor />, document.getElementById("root"));
+</script>
+</body>
+</html>
