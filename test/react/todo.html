@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <title>生命周期</title>
+</head>
+<body>
+<div id="example"></div>
+<script src="../build/babel.js"></script>
+<script type="text/babel">
+    class Title extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return <h3>{this.props.title}</h3>
+        }
+    }
+    class List extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return (
+                    <ul>
+                        {
+                            this.props.listData.map((a, b) => {
+                                return <li key={b}>{a.con}</li>
+                        })
+                    }
+                </ul>
+            )
+        }
+    }
+    class Todo extends React.Component{
+        constructor(){
+            super();
+            this.state={text:"",arr:[]};
+        }
+        change(e){
+            var val= e.target.value;
+            this.state.text=val;
+        }
+        click(){
+            var obj={
+                con:this.state.text
+            }
+            this.setState(function(prev){
+                return {
+                    arr:prev.arr.concat(obj)//以前的值，再连接上新提交的值
+                }
+            })
+        }
+        render(){
+            return (
+                    <div>
+                        <Title title="备忘录"/>;
+                        <List listData={this.state.arr}/>
+                        <input type="text" onChange={this.change.bind(this)} />
+                         <input type="button" onClick={this.click.bind(this)} value="保存" />
+                    </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Todo/>,document.getElementById("example"))
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

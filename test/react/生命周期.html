@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <title>生命周期</title>
+</head>
+<body>
+<div id="example"></div>
+<script src="../build/babel.js"></script>
+<!--<script type="text/babel">
+    class Time extends React.Component{
+        constructor(){
+            super();
+            this.state={time:0};
+            console.log("构造函数");
+        }
+        /*组件即将装配到页面中，一个组件从无到有的过程*/
+        componentWillMount(){
+            console.log("组件即将转配到页面当中");
+        }
+        render(){
+            console.log("组件正在装配到页面中");
+            return <div>{this.state.time}</div>;
+        }
+        componentDidMount(){
+            console.log("组件已经装配到页面中");
+            var num=0;
+            setInterval(()=>{
+                num++;
+                this.setState({time:num})
+            },1000)
+
+        }
+
+    }
+    ReactDOM.render(<Time/>,document.getElementById("example"));
+</script>-->
+<script type="text/babel">
+    class Time extends React.Component{
+        constructor(){
+            super();
+            this.state={time:"now"};
+            console.log("构造函数");
+        }
+
+        componentWillUpdate(){
+            console.log("即将更新");
+        }
+        componentDidUpdate(){
+            console.log("更新完成");
+        }
+        change(){
+            this.setState({time:"next"});
+        }
+        render(){
+            return (
+                    <div onClick={this.change.bind(this)}>{this.state.time}</div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Time/>,document.getElementById("example"));
+</script>
+
+
+
+</body>
+</html>

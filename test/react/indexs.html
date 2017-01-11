@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <!--<script src="../build/browser.min.js"></script>-->
+  </head>
+  <body>
+
+    <div id="example"></div>
+    <script src="../build/babel.js"></script>
+    <script type="text/babel">
+        /* class HelloMessage extends React.Component {
+            render() {
+                return <div>Hello {this.props.name}</div>;
+            }
+        }
+
+        ReactDOM.render(<HelloMessage name="Jane" />,document.getElementById("example"));
+
+      console.log(window);*/
+
+
+        /*var Hello=React.createClass({
+            render:function(){
+                return <div>{this.props.children}</div>
+            }
+        })
+        ReactDOM.render(<Hello><span>span1</span><span>span2</span><span>span3</span></Hello>,document.getElementById("example"))*/
+
+        class Hello extends React.Component{
+            constructor(){
+                super();
+            }
+            render(){
+               /* return <div>{React.Children.map(this.props.children,function(a){
+                    return <li>{a}</li>;
+                })}</div>*/
+                return <div>{(this.props.children).map(function(a,b){
+                    return <li key={b}>{a}</li>;
+                })}</div>
+
+
+            }
+        }
+        ReactDOM.render(<Hello><span>span1</span><span>span2</span><span>span3</span></Hello>,document.getElementById("example"));
+
+
+
+       //javascript的构造函数
+        /*class person {
+            constructor(){
+                this.name="邓雅琴";
+                this.age=18;
+            }
+            say(){
+                console.log(this.name);
+            }
+        }
+        class child extends person{
+            constructor(){
+                super();
+            }
+        }
+        console.log(new child().name);*/
+    </script>
+  </body>
+</html>
