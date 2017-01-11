@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+
+          class Todo extends React.Component{
+              constructor(){
+                  super();
+                  this.inputChange=this.inputChange.bind(this);
+                  this.inputSubmit=this.inputSubmit.bind(this);
+                  this.state={tpl:[],text:""};
+              }
+
+
+              inputChange(e){
+                  var val= e.target.value;
+                  this.setState({text:val});
+              }
+
+
+              inputSubmit(e){
+                  var obj={
+                      id:Date.now(),
+                      text:this.state.text
+                  }
+                  this.setState(
+                          function(pre){
+                              console.log(pre)
+                              return  ({
+                                  tpl:pre.tpl.concat(obj),
+                                  text:""})
+                          })
+              }
+
+              render(){
+                  return <form>
+                <title>代办事件</title>
+                  <Listes listData={this.state.tpl}/>
+              <input type="text"  onChange={this.inputChange}  value={this.state.text}/>
+              <input type="button" value="发送" onClick={this.inputSubmit} />
+                  </form>
+              }
+
+          }
+
+
+
+         class Listes extends React.Component{
+             render(){
+                 return  <ul>
+                 {this.props.listData.map(function(a){
+                     return  <li key={a.id}>{a.text}</li>
+                 })}
+                         </ul>
+             }
+         }
+
+
+      ReactDOM.render(<Todo/>,document.getElementById("root"));
+
+
+
+
+</script>
+</html>
