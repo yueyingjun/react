@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
+</head>
+<body>
+<div id="root">
+</div>
+<script src="node_modules/babel-standalone/babel.js"></script>
+<script type="text/babel">
+/*
+    var Example=React.createClass({
+        getInitialState:function(){
+          return {text:"abc"}
+        },
+        render:function(){
+            return (
+                <div>
+                    {this.state.text}
+                </div>
+            )
+        }
+    })
+*/
+
+   class Example extends React.Component{
+       constructor(){
+           super();
+           console.log("初始化");
+           this.state={text:"初始值"}
+
+       }
+       componentWillMount(){
+          console.log(window);
+       }
+
+       componentDidMount(){
+           console.log(window);
+       }
+
+       componentWillUpdate(){
+           console.log("即将更新");
+       }
+       componentDidUpdate(){
+
+           console.log("更新完毕")
+       }
+       shouldComponentUpdate(){
+           return true;
+       }
+
+       click(){
+         this.setState({text:"更新的值"})
+       }
+
+       render(){
+           console.log("正在渲染....");
+         return (
+             <div onClick={this.click.bind(this)}>
+                 <Son attr={this.state.text}></Son>
+             </div>
+         )
+       }
+   }
+
+   class Son extends React.Component{
+      constructor(){
+          super();
+      }
+       componentWillReceiveProps(){
+          console.log("子元素的属性即将要发生更改")
+       }
+      render(){
+          return (
+              <div>{this.props.attr}</div>
+          )
+      }
+   }
+
+
+   ReactDOM.render(<Example/>,document.getElementById("root"))
+
+</script>
+</body>
+</html>

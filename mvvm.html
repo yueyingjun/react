@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+</div>
+<script src="node_modules/babel-standalone/babel.js"></script>
+<script type="text/babel">
+
+    class Mvvm extends React.Component {
+        constructor() {
+            super();
+            this.state={val:"请输入内容看看"}
+        }
+        change(e){
+            var current=e.target.value;
+            this.setState({val:current})
+        }
+        focus(e){
+            var current=e.target.value;
+            if(current=="请输入内容看看"){
+                this.setState({val:""})
+            }
+        }
+        blur(e){
+            var current=e.target.value;
+            if(current==""){
+                this.setState({val:"请输入内容看看"})
+            }
+        }
+        render() {
+            return (
+                    <div>
+                        <h3>{this.props.title}</h3>
+                        <textarea value={this.state.val} onChange={this.change.bind(this)} onFocus={this.focus.bind(this)} onBlur={this.blur.bind(this)}></textarea>
+                        <div>
+                            {this.state.val}
+                        </div>
+                    </div>
+            )
+        }
+
+    }
+
+    ReactDOM.render(<Mvvm title="mvvm11">mvvm</Mvvm>,document.querySelector("#root"));
+
+
+</script>
+</body>
+</html>
