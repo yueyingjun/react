@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+    class Miaobiao extends React.Component{
+        constructor(){
+            super();
+            this.state={first:0};
+        }
+
+        xunhuan(){
+            this.setState((prevState)=>({
+                first:prevState.first+1
+            }))
+        }
+
+        componentDidMount() {
+            this.time = setInterval(()=>{this.xunhuan()}, 1000);
+        }
+
+//        click(){
+//            this.state.first=this.state.first;
+//            return "999";
+//        }
+
+        render(){
+            return (
+                            <div>
+                                <h1>秒表</h1>
+                                <h1>用时：{this.state.first}s</h1>
+//                                <input type="button" value="暂停" onClick={this.click.bind(this)}/>
+                            </div>
+                    )
+        }
+    }
+    ReactDOM.render(<Miaobiao/>,document.getElementById("root"));
+</script>
+</body>
+</html>
