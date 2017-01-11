@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+    class Copyed extends React.Component{
+        constructor(){
+                super();
+                this.title="文本复制";
+                this.state={con:""};
+           }
+
+         inputChange(e){
+           var val= e.target.value;
+             this.setState({con:val});
+             }
+
+       render(){
+           return<div>
+           <p>{this.state.con}</p>
+                <title>{this.title}</title>
+    <textarea onChange={this.inputChange.bind(this) } cols="30" rows="10"></textarea>
+        </div>
+          }
+    }
+    ReactDOM.render(<Copyed/>,document.getElementById("root"));
+</script>
+</html>

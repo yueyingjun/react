@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+   <div id="root"></div>
+</body>
+<script type="text/babel">
+     class Times extends React.Component{
+         constructor(){
+             super();
+             this.name="时间计数";
+             this.state={nums:0};
+         }
+         render(){
+             return <div>
+                     {this.state.nums}
+                    </div>
+         }
+
+        componentDidMount(){
+           var num=0;
+            setInterval(()=>{
+                num++
+                this.setState({nums:num})
+            },1000)
+        }
+
+     }
+      ReactDOM.render(<Times/>,document.getElementById("root"));
+</script>
+</html>
