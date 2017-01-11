@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Parent extends React.Component {
+        constructor (){
+            super();
+        }
+        render (){
+            return(<ul>
+                    <Son/>
+                    <Son1/>
+                    </ul>)
+
+        }
+    }
+    class Son extends React.Component {
+        constructor (){
+            super();
+        }
+        render (){
+            return(<li>11111</li>)
+        }
+    }
+    class Son1 extends React.Component {
+        constructor (){
+            super();
+        }
+        render (){
+            return(<li>222222</li>)
+        }
+    }
+    ReactDOM.render(<Parent/>,document.getElementById("root"))
+</script>
+
+
+
+</body>
+</html>

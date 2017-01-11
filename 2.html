@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+
+</head>
+<body>
+<div id="output"></div>
+
+<script type="text/babel">
+    class Hello extends React.Component {
+        constructor(){
+            super();
+            this.state={name:"李四"};
+        }
+        fn(){
+            this.setState(this.state={name:"变化"})
+
+
+        }
+
+    render() {
+        return (
+                <div onClick={this.fn.bind(this)}>{this.state.name}</div>
+        )
+
+
+    }
+    }
+    ReactDOM.render(<Hello />, document.getElementById('output'));
+
+
+
+
+</script>
+
+</body>
+</html>

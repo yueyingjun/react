@@ -2,36 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="node_modules/react/dist/react.js"></script>
-    <script src="node_modules/react-dom/dist/react-dom.js"></script>
-
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
 </head>
-<!--jsx-->
 <body>
-
-<div id="root">
-
-</div>
-<script src="node_modules/babel-standalone/babel.js"></script>
-<!--jsx  基类  父类 顶层类  -->
+<div id="root"></div>
 <script type="text/babel">
-
-/*
-* props
-* state
-* setState
-*
-* render
-* */
-
-
     class Title extends React.Component{
         constructor(){
-           super();
+            super();
         }
         render(){
             return <h3>{this.props.title}</h3>
@@ -44,14 +25,14 @@
         }
         render(){
             return (
-                <ul>
+                    <ul>
                     {
                         this.props.listData.map((a, b) => {
-                            return <li key={b}>{a.con}</li>
-                        })
-                    }
-                </ul>
-            )
+                        return <li key={b}>{a.con}</li>
+                    })
+        }
+        </ul>
+        )
         }
     }
 
@@ -65,25 +46,25 @@
             this.state.text=val;
         }
         click(){
-           var obj={
-               con:this.state.text
-           }
-           this.setState(function(prev){
-              return  {
+            var obj={
+                con:this.state.text
+            }
+            this.setState(function(prev){
+                return  {
                     arr:prev.arr.concat(obj)
                 }
-           })
+            })
         }
         render(){
             return (
-                <div>
-                    <Title title="待办事项"/>
-                     <List listData={this.state.arr}/>
-                    <input type="text" onChange={this.change.bind(this)}/>
-                    <input type="button" value="提交" onClick={this.click.bind(this)}/>
-                </div>
+                    <div>
+                    <Title title="todo"/>
+                    <List listData={this.state.arr}/>
+        <input type="text" onChange={this.change.bind(this)}/>
+        <input type="button" value="提交" onClick={this.click.bind(this)}/>
+        </div>
 
-            )
+        )
         }
     }
 
@@ -91,5 +72,8 @@
 
     ReactDOM.render(<Todo/>,document.getElementById("root"));
 </script>
+
+
+
 </body>
 </html>
