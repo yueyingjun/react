@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class Time extends React.Component {
+        constructor (){
+            super();
+            this.state={time:0}
+            console.log("构造函数")
+        }
+        componentWillMount(){
+            console.log("即将讲组件装配到页面")
+        }
+        render (){
+            console.log("正在将组件装配到页面")
+            return(<div>{this.state.time}</div>)
+
+        }
+        componentDidMount(){
+            console.log("完成组件装配到页面")
+            var num=0;
+
+            setInterval(()=>{
+                num++
+                console.log(num)
+                this.setState({time:num})
+            },1000)
+        }
+    }
+
+    ReactDOM.render(<Time/>,document.getElementById("root"))
+</script>
+
+
+
+</body>
+</html>

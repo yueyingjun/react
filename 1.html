@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.min.js"></script>
+
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    class HelloMessage extends React.Component {
+        render() {
+            return <div>Hello {this.props.name}</div>;
+        }
+    }
+    ReactDOM.render(
+    <HelloMessage name="jane"/>,
+            document.getElementById("example")
+    );
+
+
+    var arr=[1,2,3,4,5]
+
+
+    console.log(
+    arr.map(function(a){
+        return a+1
+    })
+    )
+
+
+</script>
+
+</body>
+</html>

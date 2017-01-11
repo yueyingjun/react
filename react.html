@@ -2,55 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="node_modules/react/dist/react.js"></script>
-    <script src="node_modules/react-dom/dist/react-dom.js"></script>
-
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
 </head>
-<!--jsx-->
 <body>
-   <div id="root">
+<div id="root"></div>
+<script type="text/babel">
+    class  Hello extends  React.Component{
+        constructor(){
+            super();
+        }
 
-   </div>
-   <script src="node_modules/babel-standalone/babel.js"></script>
-<!--jsx  基类  父类 顶层类  -->
-   <script type="text/babel">
-/*
-*
-* 地图
-* 映射
-* */
+        render(){
+            return (
+                    <div>
+                    {(this.props.children).map(function(a,b){
+                        return <li key={b}>{a}</li>
+                    })}
 
-       /*
-       * 1.  我们在使用已经定义好的组件的时候，可以传入属性
-       * 2.  我们可以在组件的内容获取到传进来的值  this.props.属性名
-       * 3.  我们不能再组件内部更改 传进来的属性的值
-       *
-       *
-
-     class  Hello extends  React.Component{
-         constructor(){
-             super();
-         }
-
-         render(){
-             return (
-                 <div>
-                     {(this.props.children).map(function(a,b){
-                         return <li key={b}>{a}</li>
-                     })}
-
-                 </div>
-             )
-         }
-     }
+        </div>
+        )
+        }
+    }
 
 
-       ReactDOM.render(<Hello><span>span</span><span>em</span><span>i</span></Hello>,document.getElementById("root"))
-*/
-   </script>
+    ReactDOM.render(<Hello><span>span</span><span>em</span><span>i</span></Hello>,document.getElementById("root"))
+</script>
+
+
+
 </body>
 </html>
