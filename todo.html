@@ -6,90 +6,68 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="node_modules/react/dist/react.js"></script>
-    <script src="node_modules/react-dom/dist/react-dom.js"></script>
-
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
-<!--jsx-->
 <body>
-
-<div id="root">
-
-</div>
-<script src="node_modules/babel-standalone/babel.js"></script>
-<!--jsx  基类  父类 顶层类  -->
+<div id="root"></div>
+</body>
+<!--<script src="node_modules/"></script>-->
 <script type="text/babel">
-
-/*
-* props
-* state
-* setState
-*
-* render
-* */
-
-
     class Title extends React.Component{
         constructor(){
-           super();
+            super();
         }
         render(){
-            return <h3>{this.props.title}</h3>
+            return <div>{this.props.title}</div>
         }
     }
-
     class List extends React.Component{
         constructor(){
             super();
         }
         render(){
             return (
-                <ul>
-                    {
-                        this.props.listData.map((a, b) => {
+                    <ul>
+                        {this.props.listdata.map((a,b)=>{
                             return <li key={b}>{a.con}</li>
-                        })
-                    }
-                </ul>
+                        })}
+                    </ul>
             )
         }
     }
-
+    //单向流->从顶层组件到子组件
     class Todo extends React.Component{
         constructor(){
             super();
             this.state={text:"",arr:[]};
         }
         change(e){
-            var val=e.target.value;
-            this.state.text=val;
+            this.state.text=e.target.value;
         }
-        click(){
-           var obj={
-               con:this.state.text
-           }
-           this.setState(function(prev){
-              return  {
+        submit(){
+            var obj={
+                con:this.state.text
+            }
+            this.setState(function (prev) {
+                return {
                     arr:prev.arr.concat(obj)
                 }
-           })
+            })
         }
         render(){
             return (
-                <div>
-                    <Title title="待办事项"/>
-                     <List listData={this.state.arr}/>
-                    <input type="text" onChange={this.change.bind(this)}/>
-                    <input type="button" value="提交" onClick={this.click.bind(this)}/>
-                </div>
-
+                    <div>
+                        <Title title="待办事项"/>
+                        <List listdata={this.state.arr}/>
+                        <input type="text" onChange={this.change.bind(this)}/>
+                        <input type="submit" onClick={this.submit.bind(this)}/>
+                    </div>
             )
         }
     }
-
-
-
-    ReactDOM.render(<Todo/>,document.getElementById("root"));
+    ReactDOM.render(<Todo/>,document.getElementById("root"))
 </script>
-</body>
+
 </html>
