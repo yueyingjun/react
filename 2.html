@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<!--<script src="node_modules/"></script>-->
+<script type="text/babel">
+    class Title extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return <div>{this.props.title}</div>
+        }
+    }
+    class List extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return (
+                    <ul>
+                        {this.props.listdata.map((a,b)=>{
+                            return <li key={b}>{a.con}</li>
+                        })}
+                    </ul>
+            )
+        }
+    }
+    //单向流->从顶层组件到子组件
+    class Todo extends React.Component{
+        constructor(){
+            super();
+            this.state={text:"",arr:[]};
+        }
+        change(e){
+            this.state.text=e.target.value;
+        }
+        submit(){
+            var obj={
+                con:this.state.text
+            }
+            this.setState(function (prev) {
+                return {
+                    arr:prev.arr.concat(obj)
+                }
+            })
+        }
+        render(){
+            return (
+                    <div>
+                        <Title title="待办事项"/>
+                        <List listdata={this.state.arr}/>
+                        <input type="text" onChange={this.change.bind(this)}/>
+                        <input type="submit" onClick={this.submit.bind(this)}/>
+                    </div>
+            )
+        }
+    }
+    ReactDOM.render(<Todo/>,document.getElementById("root"))
+</script>
+
+</html>
