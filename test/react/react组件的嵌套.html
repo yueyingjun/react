@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <!--<script src="../build/browser.min.js"></script>-->
+</head>
+<body>
+
+<div id="example"></div>
+<script src="../build/babel.js"></script>
+<script type="text/babel">
+   class Parent extends React.Component{
+       constructor(){
+           super();
+       }
+
+       render(){
+           return(
+               <ul>
+                   <Son></Son>
+                   <Son1></Son1>
+               </ul>
+           )
+       }
+   }
+
+    class Son extends React.Component{
+        constructor(){
+            super();
+        }
+        render(){
+            return(
+                <li>aaaaa</li>
+            )
+        }
+    }
+   class Son1 extends React.Component{
+       constructor(){
+           super();
+       }
+       render(){
+           return(
+               <li>bbbbb</li>
+           )
+       }
+   }
+   ReactDOM.render(<Parent/>,document.getElementById("example"));
+
+</script>
+</body>
+</html>
