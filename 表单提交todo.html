@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="public/js/react.js"></script>
+    <script src="public/js/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Title extends React.Component {
+            constructor(){
+                super();
+            }
+
+            render(){
+                return <h3>{this.props.title}</h3>
+            }
+        }
+
+        class List extends React.Component {
+            constructor(){
+                super();
+            }
+
+            render(){
+                return (
+                        <ul>
+                            {
+                                this.props.listDate.map((a,b)=>{
+                                    return <li key={b}>{a}</li>
+                                })
+                            }
+                        </ul>
+                )
+            }
+        }
+
+        class Todo extends React.Component {
+            constructor(){
+                super();
+                this.state={text:"",arr:[]};
+            }
+            change(e){
+                var val=e.target.value;
+                this.state.text=val;
+            }
+            click(){
+                var obj={
+                    con:this.state.text
+                }
+                this.setState(function (prev) {
+                    return {
+                        arr:prev.arr.concat(obj.con)
+                    }
+                })
+            }
+
+            render(){
+                return (
+                    <div>
+                        <Title title="待办事项"/>
+                        <List listDate={this.state.arr}/>
+                        <input type="text" onChange={this.change.bind(this)}/>
+                        <input type="submit" onClick={this.click.bind(this)} value="提交"/>
+                    </div>
+                )
+            }
+        }
+
+
+
+        ReactDOM.render(<Todo/>,root);
+    </script>
+
+</body>
+</html>
