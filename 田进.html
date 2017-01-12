@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../react/node_modules/react/dist/react.js"></script>
+    <script src="../react/node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.6.2/remarkable.min.js"></script>
+    <script src="build/browser.min.js"></script>
+
+  </head>
+  <body>
+    <div id="timer"></div>
+    <div id="todo"></div>
+    <div id="markDown"></div>
+
+    <script type="text/babel">
+
+      /*
+      *数字累加demo
+      * */
+      class Timer extends React.Component{
+        constructor(){
+          super()
+          this.state={time:0}
+
+        }
+
+        render(){
+          return <div>{this.state.time}</div>
+
+        }
+        //组件已经渲染到了页面中
+        componentDidMount(){
+          var num=0;
+          setInterval(()=>{
+            num++;
+            this.setState({time:num})
+          },1000)
+        }
+
+
+
+      }
+      ReactDOM.render(<Timer/>,document.getElementById("timer"));
+
+
+      /*
+      *Todo  demo
+      * */
+      //标题组件
+      class Title extends React.Component{
+        constructor(){
+          super()
+        }
+        render(){
+          return <h3>{this.props.title}</h3>
+        }
+
+      }
+      //列表组件
+      class List extends React.Component{
+        constructor(){
+          super()
+        }
+        render(){
+          return (<ul>{this.props.listData.map(function (a,b) {
+              return <li key={b}>{a.con}</li>
+          })}</ul>)
+        }
+
+      }
+
+      //主体组件
+
+      class Todo extends React.Component{
+        constructor(){
+          super();
+          this.state={val:"",arr:[]}
+
+        }
+        change(e){
+          this.state.val=e.target.value;
+        }
+        click(){
+          var obj={
+            con:this.state.val
+          }
+          this.setState(function (prev) {
+              return {
+                arr:prev.arr.concat(obj)
+              }
+          })
+        }
+        render(){
+          return (<div>
+            <Title title="备忘录"/>
+            <List listData={this.state.arr}/>
+            <input type="text" onChange={this.change.bind(this)} />
+            <input type="button" value="发送" onClick={this.click.bind(this)} />
+          </div>)
+
+        }
+
+      }
+
+      ReactDOM.render(<Todo/>,document.getElementById("todo"));
+
+/*markDown语法*/
+      class Markdown extends React.Component {
+        constructor(props) {
+          super(props);
+          this.handleChange = this.handleChange.bind(this);
+          this.state = {value: '在这里书写 *markdown* 语法!'};
+        }
+
+        handleChange(e) {
+          var val=e.target.value
+          this.setState({value:val});
+        }
+
+        getRawMarkup() {
+          var md = new Remarkable();
+          return { __html: md.render(this.state.value) };
+        }
+
+        render() {
+          return (
+                  <div className="MarkdownEditor">
+                    <h3>输入</h3>
+                    <textarea
+                            onChange={this.handleChange}
+                            defaultValue={this.state.value} />
+                    <h3>输出</h3>
+                    <div
+                            dangerouslySetInnerHTML={this.getRawMarkup()}
+                    />
+                  </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Markdown/>, document.getElementById("markDown"));
+
+    </script>
+  </body>
+</html>
